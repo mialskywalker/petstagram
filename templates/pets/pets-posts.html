@@ -1,0 +1,22 @@
+{% load static %}
+{% for photo in all_photos %}
+
+        {% if photo.location %}
+            <span>{{ photo.location }}</span>
+        {% endif %}
+
+    {% for pet in photo.tagged_pets.all %}
+        <a href="{% url 'pet-details' "username" pet.slug %}">
+            <p class="message">
+                <b>{{ pet.name }}</b>
+            </p>
+        </a>
+    {% endfor %}
+
+    <a href="{% url 'photo-details' photo.pk %}">
+        <h4 class="details">See details</h4>
+    </a>
+
+    <h5 class="postTime">{{ photo.date_of_publication }}</h5>
+
+{% endfor %}
